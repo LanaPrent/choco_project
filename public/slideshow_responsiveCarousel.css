@@ -1,0 +1,27 @@
+/* Slideshow container */
+.slideshow-container {
+  width: 90%; /*makes it even more responsive*/
+  max-width: 420px;
+  height: 250px; /* fix slider height */
+  position: relative;
+  margin: 20px auto;
+  overflow: hidden;
+  border: none; /*2px solid #333*/
+  border-radius: 10px;
+}
+
+
+/* Wrapper holding all slides */
+.slides-wrapper{
+  display: flex;
+  transition: transform 1.5s ease-in-out; 
+}
+
+/*each slide*/
+.mySlides {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+

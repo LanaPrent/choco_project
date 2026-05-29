@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en-gb" dir="ltr">
+    <head>
+        <title>Dark Chocolate new website</title>
+        <meta charset="UTF-8">
+        <meta name="author" content="LanaP">
+        <meta name="keyword" content="dark chocolate, powder, beans, lead, cadmium">
+        <meta name="description" content="benefits and harms of dark chocolate">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles_Dark_Chocolate.css">
+    </head>
+<body>
+   <div class="header">
+<h1>Benefits and Harms of Dark Chocolate</h1>
+<!-- <p>A website created by LP.</p> -->
+   </div>
+<div class="navbar">
+   
+   <a href="About_us.html">About us</a>
+   <a href="Contact_us.html">Contact us</a>
+   <a href="mailto:sp.englishlang@yahoo.com" class="right">Send us an email</a>
+</div>
+
+<div class="row">
+<div class="side">
+<h2>Useful Information about Dark Chocolate</h2>
+<img src="dark_chocolate2.jpeg" alt="A dark chocolate bar and cacao beans" width="320" height="200"><br><br>
+<a href="Why_is_Cocoa_Dangerous.html">Heavy Metals in Dark Chocolate</a><br>
+<a href="Chocolate_brands.html">Dark Chocolate Brands</a><br>
+<a href="Chocolate_Eating_Advice.html">Safe Chocolate Eating Advice</a><br><br>
+<img src="cacao_pods.jpeg" alt="Cacao pods" width="180" height="280" style="position:left"><br><br><br>
+<img src="cacao_pod_with_beans.jpeg" alt="A cacao pod with beans" width="280" height="160"><br><br>
+</div>
+
+
+<div class="main">
+<h2>Positive Effects of Dark Chocolate</h2>
+<p>For many of us, chocolate is more than just a tasty treat. It’s a mood lifter, an energy booster, a reward after a tough day, a favorite holiday gift. 
+   People also choose dark chocolate in particular for its potential health benefits, thanks to studies that suggest its rich supply of antioxidants may improve heart health and prevent other conditions, and for its relatively low levels of sugar. In fact, more than half of people in a recent survey from the <abbr title="National Confectioners Association">NCA</abbr> described dark chocolate as a “better for you” candy.
+   <br> Approximately 30-60 grams of dark chocolate per day is recommended quantity to be healthy.</p>
+<br>
+<h2>Side Effects of Excessive Consumption of Dark Chocolate</h2>
+
+<p>Approximately 30-60 grams of dark chocolate per day is recommended quantity to be healthy.Indulge in anything more than that, and you may be consuming too many calories. A 1.45-ounce (41 gram) Hershey's Special Dark Chocolate Bar has 190 calories. Moreover, excessive consumption of dark chocolate can increase caffeine levels in blood, causing increased heart rate, nausea, dehydration and insomnia. </p>
+<p>Numerous research studies on heavy metals in <a href="Why_is_Cocoa_Dangerous.html"  target="_blank">cacao </a>and what can be done about them. In order to find out real pros and cons of eating dark chocolate, chocolate bars from various brands have been <a href="Chocolate_brands.html" target="_parent">tested</a>. Eventually, there appeared helpful Chocolate eating <a href="Chocolate_Eating_Advice.html" target="_top">advice </a>.</p>
+
+
+<center><section class="slide show">
+<img class="mySlides" src="dark_chocolate4.jpeg" alt="dark chocolate bar" width="320" height="200" >
+<img class="mySlides" src="dark_chocolate3.jpeg" alt="dark chocolate bar, cacao powder and hazelnuts" width="420" height="300" >
+</section></center>
+<script>
+   
+   var myIndex = 0;
+   carousel();
+
+   function carousel()   {
+      var i;
+      var x = document.getElementsByClassName("mySlides");
+      for(i=0; i<x.length; i++){
+         x[i].style.display="none";
+      }
+      myIndex++;
+      if(myIndex>x.length) {myIndex=1}
+      x[myIndex-1].style.display="block";
+      setTimeout(carousel,6000);
+   }
+</script>
+<div>
+   <br>
+<center><img src="dark_chocolate.jpeg" alt="Dark chocolate beans, powder and bar" width="420" height="300" usemap="#dc_map" style="position:center;" ></center>
+<map name="dc_map">
+   <area shape="circle" coords="60,80,70" title="Read here about the benefits of cacao powder" onclick="Function()" href="https://www.webmd.com/diet/health-benefits-cacao-powder">
+   <area shape="circle" coords="340,200,70" title="Read here about the benefits of cacao powder" onclick="Function()" href="https://www.webmd.com/diet/health-benefits-cacao-powder">
+   <area shape="circle" coords="180,200,40" title="Read here about the benefits of dark chocolate" onclick="Function()" href="https://www.healthline.com/nutrition/7-health-benefits-dark-chocolate">
+   <area shape="circle" coords="300,80,70" title="Read here about the varieties of cacao bean" onclick="Function()" href="https://barandcocoa.com/pages/varieties-of-cocoa-beans">
+   <area shape="circle" coords="60,270,40" title="Read here about the benefits of cacao beans" onclick="Function()" href="https://www.webmd.com/diet/health-benefits-cacao-powder">
+</map>
+ 
+</div>
+
+</div>
+
+</div>
+
+
+<div class="footer">
+   <div>
+   <button class="b1" onclick="document.location='Why_Is_Cocoa_dangerous.html'">Heavy Metals in Dark Chocolate</button>
+   <button class="b1" onclick="document.location='Chocolate_brands.html'">Dark Chocolate Brands</button>
+   <button class="b1" onclick="document.location='Chocolate_Eating_Advice.html'">Safe Chocolate Eating Advice</button>
+   <a href="https://www.consumerreports.org/health/food-safety/lead-and-cadmium-in-dark-chocolate-a8480295550/" style="background-color: orange;" class="right">
+   <button class="b1">Read here the full report</button>
+</a>
+</div>
+</div>
+</body>
+</html>

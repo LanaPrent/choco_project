@@ -1,0 +1,85 @@
+  /*Modern reset*/
+ *, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+   line-height: 1.5;
+  font-family: system-ui, sans-serif;
+}
+
+img, video {
+  max-width: 100%;
+  display: block;
+}
+/*
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+*/
+.flex {
+  display: flex;
+  gap: 16px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .flex {
+    flex-direction: column;
+  }
+}
+
+#s1{
+  font-size: 2rem; 
+}
+
+h1, h2, h3, p {
+  margin: 0 0 12px;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
+
+p {
+  color: #333;
+}
+
+.stack > * + * {
+  margin-top: 16px;
+}
+
+
+/*You define columns per use:*/
+.grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/*test at the end of all three css files to prove something
+.container {
+  max-width: none !important;
+  margin: 0 !important;
+}
+  */
