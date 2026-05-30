@@ -1,3 +1,4 @@
+const logger = require("../config/logger");
 const conn = require("../config/db"); //tj. ovo ne vidim u server.js fajlu
 const nodemailer = require("nodemailer");
 
@@ -5,11 +6,19 @@ exports.submitContactForm = async (req, res) => {
 
     console.log("REQUEST BODY:", req.body);
     console.log("IP:", req.ip);
+   // logger.info(`REQUEST BODY: ${JSON.stringify(req.body)}`);
+    //logger.info(`IP: ${req.ip}`);
+
 
     let { name, email, comments, website } = req.body;
 
     if (website) {
-        return res.status(400).send("Bot detected");
+        //return res.status(400).send("Bot detected");
+        return res.status(400).json({
+    success: false,
+    message: "Bot detected"
+});
+
     }
 
     name = name?.normalize("NFKC").trim();
@@ -48,7 +57,8 @@ exports.submitContactForm = async (req, res) => {
         async (err) => {
 
             if (err) {
-                console.error(err);
+               //console.error(err);
+              logger.error(err.message);
 
                 return res.status(500).json({
                     success: false,
