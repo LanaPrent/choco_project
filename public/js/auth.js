@@ -254,12 +254,28 @@ logoutBtn.addEventListener("click", async (e) => {
 
         updateAuthButtons();
 
-        alert("Logged out");
+        //alert("Logged out");
+
+        const msg = document.getElementById("authMsg");
+
+msg.textContent = "Logged out successfully";
+msg.classList.add("show");
+
+setTimeout(() => {
+    msg.classList.remove("show");
+}, 2500);
 
     } catch (err) {
+    console.error(err);
 
-        console.error(err);
+    const msg = document.getElementById("authMsg");
 
-        alert("Logout failed");
-    }
+    msg.textContent = "Logout failed";
+    msg.classList.add("show", "error"); // optional "error" class for red color
+
+    setTimeout(() => {
+        msg.classList.remove("show");
+        msg.classList.remove("error"); // remove error styling too
+    }, 2500);
+}
 });
