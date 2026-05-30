@@ -18,5 +18,12 @@
   "bugs": {
     "url": "https://github.com/LanaPrent/choco_project/issues"
   },
-  "homepage": "https://github.com/LanaPrent/choco_project#readme"
+  "homepage": "https://github.com/LanaPrent/choco_project#readme",
+  "dependencies": {
+    "csurf": "^1.11.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "mysql2": "^3.22.4"
+  }
 }
