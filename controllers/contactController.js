@@ -81,7 +81,7 @@ Comments: ${comments}`
 
                 res.json({
                     success: true,
-                    message: "Saved + email sent"
+                    message: "Your message has been sent"
                 });
 
             } catch (err) {

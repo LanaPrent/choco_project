@@ -30,7 +30,7 @@ header h1 {
 /* Style the navigation bar links */
 .navbar a {
   color: white;
-  text-align: center;
+  /*text-align: center;*/
   padding: 14px 20px;
   text-decoration: none;
   display:block;
@@ -127,12 +127,12 @@ footer .b1{
     flex-direction: column;
     
   }
-
+/*
   aside,
   main{
     background-color: rgb(155, 8, 8);
   }
-
+*/
   header {
     padding: 30px 15px;
   }
@@ -143,11 +143,11 @@ footer .b1{
 }
 
 /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 349px) {
 
   .navbar{
  flex-direction: column;
-  background-color: rgba(232, 200, 20, 0.732);
+ /* background-color: rgba(232, 200, 20, 0.732); */
   justify-content: flex-start;
   }
   .navbar a {
@@ -162,7 +162,7 @@ footer .b1{
     flex-direction: column;
     gap:10px;
     padding:20px;
-    background-color:rgb(80, 47, 4);
+  /*  background-color:rgb(80, 47, 4);*/
    /* width: 100%;*/
    /*justify-content: center;*/
 
@@ -184,10 +184,13 @@ footer .b1{
   width: 100%; height: 100%;
   overflow: auto; 
   background-color: rgba(0,0,0,0.5); 
+  border:green;
+  color:green;
 }
 
 .modal-content {
-  background-color: #fefefe;
+  /*background-color: #fefefe;*/
+  background-color: blanchedalmond;
   margin: 10% auto; 
   padding: 20px;
   border: 1px solid #888;
@@ -204,3 +207,4 @@ footer .b1{
   font-weight: bold;
   cursor: pointer;
 }
+
