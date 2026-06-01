@@ -7,6 +7,7 @@ module.exports = session({
     cookie: {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // relax for production cross-site - added by 2nd AI
         maxAge: 1000 * 60 * 60
     }
 });

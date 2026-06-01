@@ -3,7 +3,7 @@ console.log("api.js loaded");
 async function apiFetch(url, options = {}) {
 
     const defaultOptions = {
-        credentials: "same-origin",
+        credentials:"include",//previously: "same-origin"
         headers: {
             "Content-Type": "application/json"
         }
