@@ -1,5 +1,5 @@
 const mysql = require("mysql2");
-/*
+
 const conn = mysql.createPool({
     host: process.env.MYSQLHOST,
     user: process.env.MYSQLUSER,
@@ -8,7 +8,7 @@ const conn = mysql.createPool({
     port: process.env.MYSQLPORT || 3306,
     connectionLimit: 5
 });
-*/
+/*
 const conn = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -17,7 +17,7 @@ const conn = mysql.createPool({
     port: process.env.DB_PORT || 3306,
     connectionLimit: 5
 });
-
+*/
 
 conn.getConnection((err, connection) => {
     if (err) {
