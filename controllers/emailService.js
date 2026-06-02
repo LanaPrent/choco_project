@@ -1,4 +1,4 @@
-controllers/emailService.js
+//controllers/emailService.js
 const nodemailer = require("nodemailer");
 
 async function sendContactEmail({ name, email, comments }) {
