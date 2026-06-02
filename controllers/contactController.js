@@ -60,14 +60,14 @@ exports.submitContactForm = async (req, res) => {
         await sendContactEmail({ name, email, comments });
         res.json({
           success: true,
-          message: "Your message has been sent (email also delivered)",
+          message: "Your message has been sent",
         });
       } catch (err) {
         console.error("EMAIL ERROR:", err);
         res.json({
           success: true,
           message:
-            "Your message has been saved to our system, but email notification failed. (Check logs for details)",
+            "Your message has been saved" //(Check logs for details),
         });
       }
     }
