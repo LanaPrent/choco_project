@@ -97,6 +97,7 @@ Comments: ${comments}`
             } catch (err) {
 
                 console.error(err);
+                console.error("EMAIL ERROR:", err);
 
                 res.json({
                     success: false,
