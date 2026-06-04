@@ -4,7 +4,7 @@ exports.getAllMessages = (req, res) => {
   conn.query("SELECT * FROM users ORDER BY created DESC", (err, results) => {
     if (err) {
       console.error(err);
-      return res.status(500).send("Database error");
+      return res.status(500).send("Database sending data to HTML table error");
     }
 
     // Render simple HTML table
@@ -25,5 +25,26 @@ exports.getAllMessages = (req, res) => {
     html += "</table>";
 
     res.send(html);
+  });
+};
+
+exports.exportMessagesCSV = (req, res) => {
+  conn.query("SELECT * FROM users ORDER BY created DESC", (err, results) => {
+    if (err) return res.status(500).send("Database export messages CSV error");
+
+    // Build CSV string
+    let csv = "ID,Name,Email,Comments,Created\n";
+    results.forEach(row => {
+      // Escape quotes
+      const name = `"${row.name.replace(/"/g,'""')}"`;
+      const email = `"${row.email.replace(/"/g,'""')}"`;
+      const comments = `"${row.comments.replace(/"/g,'""')}"`;
+      csv += `${row.id},${name},${email},${comments},${row.created}\n`;
+    });
+
+    // Send CSV file to browser
+    res.setHeader("Content-disposition", "attachment; filename=contact_messages.csv");
+    res.set("Content-Type", "text/csv");
+    res.status(200).send(csv);
   });
 };
