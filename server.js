@@ -14,6 +14,8 @@ const csrfProtection = require("./middleware/csrf");
 
 const authRoutes = require("./routes/authRoutes");
 const contactRoutes = require("./routes/contactRoutes");
+const adminRoutes = require("./routes/adminRoutes");
+app.use("/", adminRoutes);
 
 const isAuthenticated = require("./middleware/authMiddleware");
 
@@ -131,3 +133,4 @@ console.log("DB_USER =", process.env.DB_USER);
 console.log("MYSQLHOST =", process.env.MYSQLHOST);
 console.log("MYSQLUSER =", process.env.MYSQLUSER);
 console.log("MYSQLDATABASE =", process.env.MYSQLDATABASE);
+
