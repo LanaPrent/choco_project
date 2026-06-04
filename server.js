@@ -15,7 +15,7 @@ const csrfProtection = require("./middleware/csrf");
 const authRoutes = require("./routes/authRoutes");
 const contactRoutes = require("./routes/contactRoutes");
 const adminRoutes = require("./routes/adminRoutes");
-app.use("/", adminRoutes);
+
 
 const isAuthenticated = require("./middleware/authMiddleware");
 
@@ -76,6 +76,7 @@ app.use("/", contactRoutes);
 
 app.use("/api", authRoutes);
 
+app.use("/", adminRoutes);
 // =======================
 // CSRF TOKEN ROUTE
 // =======================
