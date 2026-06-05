@@ -2,8 +2,8 @@
 
 const logger = require("../config/logger");
 const conn = require("../config/db");
-const { sendContactEmail } = require("./emailService");
-
+//const { sendContactEmail } = require("./emailService");
+const { sendContactEmail } = require("../services/emailService"); //after creating folder services
 exports.submitContactForm = async (req, res) => {
   console.log("REQUEST BODY:", req.body);
   console.log("IP:", req.ip);
