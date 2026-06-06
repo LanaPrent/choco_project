@@ -35,6 +35,7 @@ async function sendContactEmail({ name, email, comments }) {
 
 module.exports = { sendContactEmail };
 */
+//emailService.js moved from controllers file to services file
 //new version with CSV attachment sending function
 const nodemailer = require("nodemailer");
 

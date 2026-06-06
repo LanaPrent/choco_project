@@ -16,6 +16,7 @@ async function generateAndSendCsv(recipient, rows, filename = "report.csv") {
 
 module.exports = { generateAndSendCsv };
 */
+//CSV+email logic moved from server.js to csvEmailService.js file
 // services/csvEmailService.js - an option to enable sending csv by email
 const { generateObjectCsvString } = require("csv-stringify/sync");
 const nodemailer = require("nodemailer");
