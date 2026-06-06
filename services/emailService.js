@@ -48,14 +48,24 @@ async function sendContactEmail({ name, email, comments }) {
         auth: {
             user: process.env.EMAIL_USER,
             pass: process.env.EMAIL_PASS
+            //user: process.env.CONTACT_EMAIL,
+           // pass: process.env.CONTACT_EMAIL_PASS
         },
         connectionTimeout: 10000,
         greetingTimeout: 10000
     });
+    const recipients = [
+        //process.env.EMAIL_USER,
+        process.env.CONTACT_EMAIL,
+       // "assistant@example.com"
+    ]
 
     await transporter.sendMail({
         from: process.env.EMAIL_USER,
-        to: process.env.EMAIL_USER,
+        //to: process.env.EMAIL_USER,
+        //from: process.env.CONTACT_EMAIL,
+        //to: process.env.CONTACT_EMAIL,
+        to: recipients.join(","),
         subject: "New Contact Form Submission",
         text:
             `Name: ${name}\n` +
