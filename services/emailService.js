@@ -106,6 +106,7 @@ module.exports = { sendContactEmail, sendCsvEmail };
 // -------------------------------
 // SMTP (Yahoo) Version
 // -------------------------------
+const nodemailer = require("nodemailer");
 async function sendEmail({ recipients, subject, text, attachments }) {
   // Create the SMTP transporter
   const transporter = nodemailer.createTransport({
