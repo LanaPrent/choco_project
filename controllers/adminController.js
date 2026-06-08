@@ -62,7 +62,8 @@ const { sendCsvEmail } = require("../services/emailService");//added for Resen a
 
       // We send to each recipient
       for (const email of recipients) {
-        await sendCsvEmail(email, csvPath);
+       // await sendCsvEmail(email, csvPath); //added Resend and app crashed because of await in row 65 here
+        sendCsvEmail(email, csvPath);
       }
 
       console.log("CSV report emailed successfully");
