@@ -43,7 +43,7 @@ const { sendCsvEmail } = require("../services/emailService");//added for Resen a
   //conn.query(   //before Resend
     conn.execute(
     "SELECT * FROM users ORDER BY created DESC",
-    (err, results) => {
+    async (err, results) => {
       if (err) {
         console.error("DB ERROR:", err);
     //inserted lines all until let html
