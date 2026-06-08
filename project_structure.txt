@@ -1,5 +1,5 @@
 Folder PATH listing for volume EXTERNAL_USB
-Volume serial number is 0644-BCB8
+Volume serial number is 000000A1 0644:BCB8
 E:.
 |   .env
 |   .gitignore
@@ -47,6 +47,26 @@ E:.
 |   |       semver.cmd
 |   |       semver.ps1
 |   |       
+|   +---@stablelib
+|   |   \---base64
+|   |       |   base64.bench.ts
+|   |       |   base64.test.ts
+|   |       |   base64.ts
+|   |       |   LICENSE
+|   |       |   package.json
+|   |       |   tsconfig.json
+|   |       |   
+|   |       \---lib
+|   |               base64.bench.d.ts
+|   |               base64.bench.js
+|   |               base64.bench.js.map
+|   |               base64.d.ts
+|   |               base64.js
+|   |               base64.js.map
+|   |               base64.test.d.ts
+|   |               base64.test.js
+|   |               base64.test.js.map
+|   |               
 |   +---@types
 |   |   \---node
 |   |       |   assert.d.ts
@@ -948,6 +968,14 @@ E:.
 |   |           session.js
 |   |           store.js
 |   |           
+|   +---fast-sha256
+|   |       LICENSE
+|   |       package.json
+|   |       README.md
+|   |       sha256.d.ts
+|   |       sha256.js
+|   |       sha256.min.js
+|   |       
 |   +---fill-range
 |   |       index.js
 |   |       LICENSE
@@ -1909,6 +1937,38 @@ E:.
 |   |           scan.js
 |   |           utils.js
 |   |           
+|   +---postal-mime
+|   |   |   CHANGELOG.md
+|   |   |   LICENSE.txt
+|   |   |   package.json
+|   |   |   postal-mime.d.ts
+|   |   |   README.md
+|   |   |   
+|   |   +---dist
+|   |   |       address-parser.cjs
+|   |   |       base64-decoder.cjs
+|   |   |       base64-encoder.cjs
+|   |   |       decode-strings.cjs
+|   |   |       html-entities.cjs
+|   |   |       mime-node.cjs
+|   |   |       pass-through-decoder.cjs
+|   |   |       postal-mime.cjs
+|   |   |       qp-decoder.cjs
+|   |   |       text-format.cjs
+|   |   |       
+|   |   \---src
+|   |           address-parser.js
+|   |           base64-decoder.js
+|   |           base64-encoder.js
+|   |           decode-strings.js
+|   |           html-entities.js
+|   |           mime-node.js
+|   |           package.json
+|   |           pass-through-decoder.js
+|   |           postal-mime.js
+|   |           qp-decoder.js
+|   |           text-format.js
+|   |           
 |   +---proxy-addr
 |   |       HISTORY.md
 |   |       index.js
@@ -2018,6 +2078,17 @@ E:.
 |   |       package.json
 |   |       README.md
 |   |       
+|   +---resend
+|   |   |   LICENSE
+|   |   |   package.json
+|   |   |   readme.md
+|   |   |   
+|   |   \---dist
+|   |           index.cjs
+|   |           index.d.cts
+|   |           index.d.mts
+|   |           index.mjs
+|   |           
 |   +---rndm
 |   |       index.js
 |   |       LICENSE
@@ -2269,6 +2340,18 @@ E:.
 |   |           index.mjs
 |   |           types.d.ts
 |   |           types.js
+|   |           
+|   +---standardwebhooks
+|   |   |   package.json
+|   |   |   README.md
+|   |   |   
+|   |   \---dist
+|   |           index.d.ts
+|   |           index.js
+|   |           index.js.map
+|   |           timing_safe_equal.d.ts
+|   |           timing_safe_equal.js
+|   |           timing_safe_equal.js.map
 |   |           
 |   +---statuses
 |   |       codes.json
