@@ -126,7 +126,7 @@ async function sendEmail({ recipients, subject, html, attachments }) {
     });
   }
 }
-
+console.log('RESEND_API_KEY exists:', !!process.env.RESEND_API_KEY);
 /*
 // -------------------------------
 // SMTP (Yahoo) Version
