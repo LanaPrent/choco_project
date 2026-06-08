@@ -33,96 +33,62 @@ exports.getAllMessages = (req, res) => {
 // controllers/adminController.js
 
 const conn = require("../config/db");
-const { sendCsvEmail } = require("../services/emailService");//added for Resend apparently
-const { createCsv } = require("../services/csvService");
-//
+const { generateAndSendCsv } = require("../services/csvEmailService");
+
 // ===============================
 // 1. VIEW ALL MESSAGES (ADMIN PAGE)
 // ===============================
-//exports.getAllMessages = (req, res) => { //before Resend
-  exports.getMessages = (req, res) => {
-  //conn.query(   //before Resend
-    conn.execute(
+exports.getAllMessages = (req, res) => {
+  conn.query(
     "SELECT * FROM users ORDER BY created DESC",
     async (err, results) => {
       if (err) {
         console.error("DB ERROR:", err);
-    //inserted lines all until let html
         return res.status(500).send("Database error");
       }
-  try {
-      // 2️⃣ Convert DB rows into CSV file
-      const csvPath = createCsv(results, "messages_report.csv");
 
-      // 3️⃣ OPTIONAL: send CSV via email
-      const recipients = [process.env.OWNER_EMAIL];
+      try {
+        // OPTIONAL: send CSV by email via Resend
+        const recipients = [process.env.OWNER_EMAIL];
+        if (process.env.ASSISTANT_EMAIL) recipients.push(process.env.ASSISTANT_EMAIL);
 
-      if (process.env.ASSISTANT_EMAIL) {
-        recipients.push(process.env.ASSISTANT_EMAIL);
+        for (const email of recipients) {
+          await generateAndSendCsv(email, results, "contact_messages.csv");
+        }
+        console.log("CSV emailed successfully");
+      } catch (emailError) {
+        console.error("CSV email error:", emailError);
+        // Page still works even if email fails
       }
 
-      // We send to each recipient
-      for (const email of recipients) {
-        await sendCsvEmail(email, csvPath); 
-        
-      }
-
-      console.log("CSV report emailed successfully");
-
-    } catch (emailError) {
-      console.error("CSV email error:", emailError);
-      // IMPORTANT: admin page still works even if email fails
-    }
-
-    // 4️⃣ Show admin page normally (HTML table etc.)
-    res.json(results);
-  });
-};
-/*
-//________________________________________
-
-
+      // Render HTML table
       let html = `
         <h1>Contact Messages</h1>
         <p>Total messages: ${results.length}</p>
         <a href="/admin/messages/export">⬇ Download CSV</a>
         <br><br>
-
         <table border="1" cellpadding="8" cellspacing="0">
           <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Comments</th>
-            <th>Date</th>
-          </tr>
-      `;
-
-      results.forEach((row) => {
-        html += `
-          <tr>
-            <td>${row.id}</td>
-            <td>${row.name}</td>
-            <td>${row.email}</td>
-            <td>${row.comments}</td>
-            <td>${row.created}</td>
-          </tr>
-        `;
+            <th>ID</th><th>Name</th><th>Email</th><th>Comments</th><th>Date</th>
+          </tr>`;
+      results.forEach(row => {
+        html += `<tr>
+                  <td>${row.id}</td>
+                  <td>${row.name}</td>
+                  <td>${row.email}</td>
+                  <td>${row.comments}</td>
+                  <td>${row.created}</td>
+                </tr>`;
       });
-
-      html += `</table>`;
-
+      html += "</table>";
       res.send(html);
-  //  }
- // );
-//};
-*/
+    }
+  );
+};
 
-//
 // ===============================
 // 2. EXPORT MESSAGES AS CSV
 // ===============================
-//
 exports.exportMessagesCSV = (req, res) => {
   conn.query(
     "SELECT * FROM users ORDER BY created DESC",
@@ -132,10 +98,8 @@ exports.exportMessagesCSV = (req, res) => {
         return res.status(500).send("Database error");
       }
 
-      // CSV header
       let csv = "ID,Name,Email,Comments,Created\n";
-
-      results.forEach((row) => {
+      results.forEach(row => {
         const name = `"${(row.name || "").replace(/"/g, '""')}"`;
         const email = `"${(row.email || "").replace(/"/g, '""')}"`;
         const comments = `"${(row.comments || "").replace(/"/g, '""')}"`;
@@ -144,15 +108,12 @@ exports.exportMessagesCSV = (req, res) => {
         csv += `${row.id},${name},${email},${comments},${created}\n`;
       });
 
-      // Send file download response
       res.setHeader(
         "Content-Disposition",
         "attachment; filename=contact_messages.csv"
       );
       res.setHeader("Content-Type", "text/csv");
-
       res.status(200).send(csv);
     }
   );
 };
-

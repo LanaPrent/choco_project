@@ -67,7 +67,7 @@ router.get("/admin/messages/email", async (req, res) => {
       }));
 
       // Send CSV email
-      await generateAndSendCsv(process.env.EMAIL_USER, rows, "contact_messages.csv");
+      await generateAndSendCsv(process.env.SMTP_USER, rows, "contact_messages.csv");
 
       res.send("CSV sent to email successfully.");
     });
