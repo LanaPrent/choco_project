@@ -55,6 +55,10 @@ app.use(helmet({
     }
 }));
 
+// =======================
+// BODY PARSERS & COOKIE
+// =======================
+
 app.use(express.json({
     limit: "10kb"
 }));
@@ -128,6 +132,10 @@ app.listen(PORT, "0.0.0.0", () => {
         `Server running on http://localhost:${PORT}`
     );
 });
+// =======================
+// LOG ENV VARIABLES (for debugging)
+// =======================
+
 console.log("DB_HOST =", process.env.DB_HOST);
 console.log("DB_USER =", process.env.DB_USER);
 

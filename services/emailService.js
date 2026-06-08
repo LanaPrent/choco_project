@@ -7,7 +7,7 @@ async function sendContactEmail({ name, email, comments }) {
     const transporter = nodemailer.createTransport({
 
         host: "smtp.mail.yahoo.com",
-        port: 587,
+        port: 587, //this 587 version often fails on Railway and other hosting platforms
         secure: false,
 
         auth: {
@@ -79,15 +79,15 @@ async function sendCsvEmail(recipient, filePath) {
         port: 587,
         secure: false,
         auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS
+            user: process.env.SMTP_USER,
+            pass: process.env.SMTP_PASS
         },
         connectionTimeout: 10000,
         greetingTimeout: 10000
     });
 
     await transporter.sendMail({
-        from: process.env.EMAIL_USER,
+        from: process.env.SMTP_USER,
         to: recipient,
         subject: "CSV Report",
         text: "Attached is the CSV report.",
@@ -102,11 +102,36 @@ async function sendCsvEmail(recipient, filePath) {
 
 module.exports = { sendContactEmail, sendCsvEmail };
 */
+
 //version 3
+
+const nodemailer = require("nodemailer");
+
+// Uncomment the following block to use Resend API
+// -------------------------------
+// Resend API
+// -------------------------------
+const { Resend } = require("resend");
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+async function sendEmail({ recipients, subject, html, attachments }) {
+  for (const to of recipients) {
+    await resend.emails.send({
+      from: process.env.SMTP_USER, // sender
+      to,
+      subject,
+      html,
+      attachments
+    });
+  }
+}
+
+/*
 // -------------------------------
 // SMTP (Yahoo) Version
 // -------------------------------
-const nodemailer = require("nodemailer");
+
 async function sendEmail({ recipients, subject, text, attachments }) {
   // Create the SMTP transporter
   const transporter = nodemailer.createTransport({
@@ -133,7 +158,7 @@ async function sendEmail({ recipients, subject, text, attachments }) {
     attachments // optional
   });
 }
-
+*/
 // -------------------------------
 // Contact Form Email Function
 // -------------------------------

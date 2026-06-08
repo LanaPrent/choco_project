@@ -33,20 +33,51 @@ exports.getAllMessages = (req, res) => {
 // controllers/adminController.js
 
 const conn = require("../config/db");
-
+const { sendCsvEmail } = require("../services/emailService");//added for Resen apparently
 //
 // ===============================
 // 1. VIEW ALL MESSAGES (ADMIN PAGE)
 // ===============================
-//
-exports.getAllMessages = (req, res) => {
-  conn.query(
+//exports.getAllMessages = (req, res) => { //before Resend
+  exports.getMessages = (req, res) => {
+  //conn.query(   //before Resend
+    conn.execute(
     "SELECT * FROM users ORDER BY created DESC",
     (err, results) => {
       if (err) {
         console.error("DB ERROR:", err);
+    //inserted lines all until let html
         return res.status(500).send("Database error");
       }
+  try {
+      // 2️⃣ Convert DB rows into CSV file
+      const csvPath = createCsv(results, "messages_report.csv");
+
+      // 3️⃣ OPTIONAL: send CSV via email
+      const recipients = [process.env.OWNER_EMAIL];
+
+      if (process.env.ASSISTANT_EMAIL) {
+        recipients.push(process.env.ASSISTANT_EMAIL);
+      }
+
+      // We send to each recipient
+      for (const email of recipients) {
+        await sendCsvEmail(email, csvPath);
+      }
+
+      console.log("CSV report emailed successfully");
+
+    } catch (emailError) {
+      console.error("CSV email error:", emailError);
+      // IMPORTANT: admin page still works even if email fails
+    }
+
+    // 4️⃣ Show admin page normally (HTML table etc.)
+    res.json(results);
+  });
+};
+//________________________________________
+
 
       let html = `
         <h1>Contact Messages</h1>
@@ -79,9 +110,9 @@ exports.getAllMessages = (req, res) => {
       html += `</table>`;
 
       res.send(html);
-    }
-  );
-};
+  //  }
+ // );
+//};
 
 //
 // ===============================
