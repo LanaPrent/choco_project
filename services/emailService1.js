@@ -103,7 +103,7 @@ async function sendCsvEmail(recipient, filePath) {
 module.exports = { sendContactEmail, sendCsvEmail };
 */
 
-//version 3 - Resend code only (1st part commented out) and Resend -SMTP/Resend toggle button
+//version 3
 
 const nodemailer = require("nodemailer");
 
@@ -112,10 +112,6 @@ const nodemailer = require("nodemailer");
 // -------------------------------
 const { Resend } = require("resend");
 
-/*
-//----------------------------------
-//Resend only code until Provider Selection and from Contact Form Email Function
-//----------------------------------
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 async function sendEmail({ recipients, subject, html, text, attachments }) {
@@ -130,83 +126,18 @@ async function sendEmail({ recipients, subject, html, text, attachments }) {
       html:html|| `<pre>${text}</pre>`,
       attachments
     });
-
     results.push(result);
   }catch(err){
     console.error("❌ Failed sending to:", to);
     console.error(err);
+
     results.push({error:err, to});
 }
 }
 return results;
 }
+
 console.log('RESEND_API_KEY exists:', !!process.env.RESEND_API_KEY);
-*/
-
-// -------------------------------
-// Provider selection - Until Contact Form Email Function toggle button SMTP/Resen
-// -------------------------------
-const EMAIL_PROVIDER = process.env.EMAIL_PROVIDER || "resend"; // "smtp" or "resend"
-
-// Resend setup
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-// SMTP setup
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: process.env.SMTP_PORT,
-  secure: process.env.SMTP_SECURE === "true", // true for 465, false for other ports
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS
-  }
-});
-
-// -------------------------------
-// Unified sendEmail function
-// -------------------------------
-async function sendEmail({ recipients, subject, html, text, attachments }) {
-  const results = [];
-
-
-  for (const to of recipients) {
-    try {
-      let result;
-
-      if (EMAIL_PROVIDER === "resend") {
-        result = await resend.emails.send({
-          from: process.env.SMTP_USER,
-          to,
-          subject,
-          html: html || `<pre>${text}</pre>`,
-          attachments
-        });
-        console.log("📤 [Resend] Email sent to:", to);
-      } else if (EMAIL_PROVIDER === "smtp") {
-        result = await transporter.sendMail({
-          from: process.env.SMTP_USER,
-          to,
-          subject,
-          html: html || `<pre>${text}</pre>`,
-          attachments
-        });
-      } else {
-        throw new Error(`Unknown EMAIL_PROVIDER: ${EMAIL_PROVIDER}`);
-      }
-
-      results.push(result);
-    } catch (err) {
-      console.error(`❌ [${EMAIL_PROVIDER.toUpperCase()}] Failed sending to: ${to}`);
-      console.error(err);
-      results.push({ error: err, to });
-    }
-  }
-  return results;
-}
-
-console.log("Using email provider:", EMAIL_PROVIDER);
-
-
 
 // -------------------------------
 // Contact Form Email Function
