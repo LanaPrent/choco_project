@@ -72,7 +72,7 @@ module.exports = { generateAndSendCsv };
  * This file uses emailService.js for sending.
  */
 
-const  { stringify } = require("csv-stringify/sync");
+const { stringify } = require("csv-stringify/sync");
 const { sendCsvEmail } = require("./emailService");
 
 /**
@@ -84,7 +84,7 @@ const { sendCsvEmail } = require("./emailService");
  */
 async function generateAndSendCsv(recipientEmail, rows, filename = "report.csv") {
   // 1️⃣ Generate CSV string
-  const csv = generateObjectCsvString(rows, { header: true });
+   const csv = stringify(rows, { header: true });
 
   // 2️⃣ Send via email
   await sendCsvEmail(recipientEmail, csv, filename);
