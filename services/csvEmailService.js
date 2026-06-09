@@ -72,7 +72,7 @@ module.exports = { generateAndSendCsv };
  * This file uses emailService.js for sending.
  */
 
-const  generateObjectCsvString  = require("csv-stringify/sync");
+const  { stringify } = require("csv-stringify/sync");
 const { sendCsvEmail } = require("./emailService");
 
 /**
