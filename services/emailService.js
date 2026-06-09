@@ -107,7 +107,6 @@ module.exports = { sendContactEmail, sendCsvEmail };
 
 const nodemailer = require("nodemailer");
 
-// Uncomment the following block to use Resend API
 // -------------------------------
 // Resend API
 // -------------------------------
@@ -115,50 +114,31 @@ const { Resend } = require("resend");
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-async function sendEmail({ recipients, subject, html, attachments }) {
+async function sendEmail({ recipients, subject, html, text, attachments }) {
+  const results = [];
+
   for (const to of recipients) {
-    await resend.emails.send({
+    try{
+    const result = await resend.emails.send({
       from: process.env.SMTP_USER, // sender
       to,
       subject,
-      html,
+      html:html|| `<pre>${text}</pre>`,
       attachments
     });
-  }
+    results.push(result);
+  }catch(err){
+    console.error("❌ Failed sending to:", to);
+    console.error(err);
+
+    results.push({error:err, to});
 }
+}
+return results;
+}
+
 console.log('RESEND_API_KEY exists:', !!process.env.RESEND_API_KEY);
-/*
-// -------------------------------
-// SMTP (Yahoo) Version
-// -------------------------------
 
-async function sendEmail({ recipients, subject, text, attachments }) {
-  // Create the SMTP transporter
-  const transporter = nodemailer.createTransport({
-    host: "smtp.mail.yahoo.com",
-    port: 587,
-    secure: false,
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS
-    },
-    connectionTimeout: 10000,
-    greetingTimeout: 10000
-  });
-
-  // Join multiple recipients as a comma-separated string
-  const toList = recipients.join(",");
-
-  // Send the email
-  await transporter.sendMail({
-    from: process.env.SMTP_USER,
-    to: toList,
-    subject,
-    text,
-    attachments // optional
-  });
-}
-*/
 // -------------------------------
 // Contact Form Email Function
 // -------------------------------
@@ -175,7 +155,9 @@ async function sendContactEmail({ name, email, comments }) {
     `Email: ${email}\n` +
     `Comments: ${comments}`;
 
-  await sendEmail({ recipients, subject, text });
+  // Send contact form email
+  const result = await sendEmail({ recipients, subject, text });
+  console.log ("✅ Contact email results:", result)
 }
 
 // -------------------------------
@@ -185,7 +167,10 @@ async function sendCsvEmail(recipientEmail, csvContent, filename = "report.csv")
   const subject = `CSV Report: ${filename}`;
   const text = "Please find the CSV report attached.";
 
-  await sendEmail({
+  try{
+    console.log("➡️ Sending email to:", recipientEmail); 
+
+  const result = await sendEmail({
     recipients: [recipientEmail],
     subject,
     text,
@@ -196,6 +181,11 @@ async function sendCsvEmail(recipientEmail, csvContent, filename = "report.csv")
       }
     ]
   });
+  console.log("✅ Email function completed for", recipientEmail, "Result:", result);
+}catch (err){
+  console.error("❌ Failed sending to:", recipientEmail);
+  console.error(err);
+}
 }
 
 module.exports = { sendContactEmail, sendCsvEmail, sendEmail };
