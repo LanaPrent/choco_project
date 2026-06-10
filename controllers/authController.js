@@ -1,5 +1,6 @@
 const conn = require("../config/db");
 const bcrypt = require("bcrypt");
+const logger = require("../config/logger");
 
 exports.register = async (req, res) => {
 
