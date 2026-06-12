@@ -181,6 +181,10 @@ async function sendEmail({ recipients, subject, html, text, attachments }) {
           html: html || `<pre>${text}</pre>`,
           attachments
         });
+        console.log(
+          "RESEND RESULT:",
+          JSON.stringify(result,null, 2)
+        );
         console.log("📤 [Resend] Email sent to:", to);
       } else if (EMAIL_PROVIDER === "smtp") {
         result = await transporter.sendMail({
