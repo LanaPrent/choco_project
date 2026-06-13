@@ -9,10 +9,10 @@ function isAuthenticated(req, res, next) {
     });
 }
 //if admin messages access restriction is active this line should be commented out or deleted:
-module.exports = isAuthenticated;
+//module.exports = isAuthenticated;
 
-// admin/messages access restriction: goes together with changes in 
-/*
+// admin/messages access restriction: goes together with changes in contact.
+
   function adminBasicAuth(req, res, next) {
   const authHeader = req.headers.authorization;
 
@@ -39,4 +39,4 @@ module.exports = isAuthenticated;
 
 module.exports={ isAuthenticated,adminBasicAuth };
 
-*/
+

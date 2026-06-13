@@ -33,11 +33,16 @@ const router = express.Router();
 
 const { getAllMessages, exportMessagesCSV } = require("../controllers/adminController");
 const { generateAndSendCsv } = require("../services/csvEmailService");
+/* ===========================
+   NEW: import adminBasicAuth, for restricting access to admin/messages
+   =========================== */
+const { adminBasicAuth } = require("../middleware/authMiddleware");
 
 /**
  * 1. Admin page - show all messages
+ * For restriction of access to admin/messages added adminBasicAuth in line below
  */
-router.get("/admin/messages", getAllMessages);
+router.get("/admin/messages", adminBasicAuth,getAllMessages);
 
 /**
  * 2. Download CSV via browser
