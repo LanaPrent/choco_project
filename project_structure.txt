@@ -1,14 +1,76 @@
 Folder PATH listing for volume EXTERNAL_USB
-Volume serial number is 000000A1 0644:BCB8
+Volume serial number is 000000C5 0644:BCB8
 E:.
 |   .env
 |   .gitignore
 |   package-lock.json
 |   package.json
 |   project_structure.txt
+|   project_structure1.txt
 |   server.js
 |   server_copy.js
 |   
++---choco_project
+|   |   .gitignore
+|   |   package-lock.json
+|   |   package.json
+|   |   project_structure.txt
+|   |   server.js
+|   |   server_copy.js
+|   |   
+|   +---config
+|   |       db.js
+|   |       logger.js
+|   |       session.js
+|   |       
+|   +---controllers
+|   |       adminController.js
+|   |       authController.js
+|   |       contactController.js
+|   |       
+|   +---middleware
+|   |       authMiddleware.js
+|   |       csrf.js
+|   |       
+|   +---public
+|   |   |   About.html
+|   |   |   cacao_pods.jpeg
+|   |   |   cacao_pod_with_beans.jpeg
+|   |   |   Chocolate_brands.html
+|   |   |   Chocolate_Eating_Advice.html
+|   |   |   Contact.html
+|   |   |   dark_chocolate.jpeg
+|   |   |   dark_chocolate2.jpeg
+|   |   |   dark_chocolate3.jpeg
+|   |   |   dark_chocolate4.jpeg
+|   |   |   Dark_Chocolate_script_fin_2p.js
+|   |   |   index.html
+|   |   |   login_logout.js
+|   |   |   script.js
+|   |   |   script_Carousel.js
+|   |   |   slideshow_responsiveCarousel.css
+|   |   |   slideshow_responsiveCarousel.js
+|   |   |   styles_Dark_Chocolate_0f_login.css
+|   |   |   styles_Form_0b.css
+|   |   |   styles_modern_reset_0c.css
+|   |   |   Why_is_Cocoa_Dangerous.html
+|   |   |   
+|   |   \---js
+|   |           api.js
+|   |           auth.js
+|   |           contact.js
+|   |           
+|   +---routes
+|   |       adminRoutes.js
+|   |       authRoutes.js
+|   |       contactRoutes.js
+|   |       
+|   \---services
+|           csvEmailService.js
+|           csvService.js
+|           emailService.js
+|           emailService1.js
+|           
 +---config
 |       db.js
 |       logger.js
@@ -2599,4 +2661,5 @@ E:.
         csvEmailService.js
         csvService.js
         emailService.js
+        emailService1.js
         
