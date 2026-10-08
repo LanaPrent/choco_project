@@ -1,5 +1,5 @@
 console.log("Contact form JS loaded");
-
+// Testing my DC_react branch
 // ===== Elements =====
 const submitBtn = document.getElementById("submitBtn");
 const form = document.getElementById("contactForm");
